@@ -1,5 +1,5 @@
 import dayjs from 'dayjs';
-import { DATE_GROUP_UNIT, DATE_UNIT, DateValue } from '../model';
+import { DATE_GROUP_UNIT, DATE_UNIT, DateValue, Task } from '../model';
 
 
 export const getDateList = (startTime: string, endTime: string, groupUnit: DATE_GROUP_UNIT, unit: DATE_UNIT) => {
@@ -38,8 +38,6 @@ export const getDateList = (startTime: string, endTime: string, groupUnit: DATE_
             obj.push(Object.assign(new DateValue, { label, children }))
         }
     }
-    console.log('obj: ', obj);
-
     return obj;
 }
 
@@ -57,4 +55,22 @@ export const getBarOffset = (startTime: string, endTime: string, dateList: DateV
             width: `${dayCount * cellWidth}px`
         }
     }
+}
+
+
+export const getTodayOffset = (dateList: DateValue[], unit: DATE_UNIT, cellWidth: number) => {
+    if (unit === 'DAY') {
+        const dateStart = dayjs();
+        const dateListStart = dayjs(dateList[0]?.children?.[0].value);
+        const dayStartCount = dateStart.diff(dateListStart, "day");
+        return {
+            left: `${dayStartCount * cellWidth}px`,
+        }
+    }
+}
+
+export const getTaskDateRange = (taskList: Task[]) => {
+    const startDate = Math.min(...taskList.map(v => new Date(v.startDate).getTime()));
+    const endDate = Math.max(...taskList.map(v => new Date(v.endDate).getTime()));
+    return [dayjs(startDate).format('YYYY-MM-DD'), dayjs(endDate).format('YYYY-MM-DD')]
 }

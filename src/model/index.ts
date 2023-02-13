@@ -11,3 +11,27 @@ export class DateValue {
     children?: DateValue[] = []
 }
 
+export class Task {
+
+    startDate = ''
+
+    endDate = ''
+
+    id = ''
+
+    key = ''
+
+    detail: any = {}
+
+}
+
+
+export class TableProp {
+
+    label = ''
+
+    value = ''
+
+    width = 80
+}
+

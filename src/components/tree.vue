@@ -14,6 +14,7 @@
 
 <script lang="ts" setup>
 import { computed } from 'vue';
+import { Task } from '../model';
 import { getBarOffset } from '../utils';
 const props = defineProps(['dateList', 'taskList', 'cellWidth', 'cellHeight', 'tableHeaderList']);
 
@@ -34,9 +35,8 @@ const style = computed(() => {
 })
 
 
-const getStyle = (task: any) => {
-
-    const status = task.status.name ?? 'Developing';
+const getStyle = (task: Task) => {
+    const status = task.detail.status ?? 'Developing';
     const statusColor: Record<string, string> = {
         'Done': 'rgb(103, 203, 72)',
         'Testing': '#f3a9e9',
@@ -50,7 +50,7 @@ const getStyle = (task: any) => {
 
 
 
-const select = (task: any) => {
+const select = (task: Task) => {
     const { dateList, cellWidth } = props;
     const horizontalStyle = getBarOffset(task.startDate, task.endDate, dateList, 'DAY', cellWidth);
     const left = parseInt(horizontalStyle!.left) || 0;

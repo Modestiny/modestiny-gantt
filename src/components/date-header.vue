@@ -6,7 +6,9 @@
             </div>
 
             <div class="sub-item-list flex">
-                <div class="item sub-item" :style="subItemStyle" v-for="item in ele.children"> {{ item.label }}</div>
+                <div class="item sub-item" v-for="(item, index) in ele.children" :style="subItemStyle(index)"> {{
+                        item.label
+                }}</div>
             </div>
         </div>
     </div>
@@ -24,9 +26,12 @@ const mainLabelStyle = computed(() => {
 })
 
 const subItemStyle = computed(() => {
-    return {
-        width: props.cellWidth + 'px',
-        height: props.cellHeight + 'px',
+    return (index: number) => {
+        return {
+            width: props.cellWidth + 'px',
+            height: props.cellHeight + 'px',
+            background: [5, 6].includes(index) ? '#f5f5f5' : ''
+        }
     }
 })
 </script>
@@ -47,7 +52,7 @@ const subItemStyle = computed(() => {
     .main-item {
         flex-shrink: 0;
         font-weight: bold;
-        font-size:12px;
+        font-size: 12px;
 
         .main-item-label {
             display: flex;

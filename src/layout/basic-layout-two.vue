@@ -87,7 +87,6 @@ useEventListener(right, 'scroll', (e) => {
 
 .basic-left-top,
 .basic-right-top {
-    height: 60px;
     position: sticky;
     top: 0;
     z-index: 2;

@@ -1,13 +1,6 @@
 <template>
-    <div :class="['bar', `bar-${task.id}`]" :style="style">
-        <el-popover :width="300" trigger="hover" :title="task.key">
-            <div>{{ task.status.description }}</div>
-            <template #reference>
-                <div class="task-info" :style="{ background: style.background }">
-                    {{ task.key }}
-                </div>
-            </template>
-        </el-popover>
+    <div :class="['bar', `bar-${task.id}`]" v-bind="{ style }">
+        <slot name="bar-extend" />
     </div>
 </template>
 
@@ -16,7 +9,6 @@ import { computed } from 'vue';
 import { getBarOffset } from '../utils';
 
 const props = defineProps(['task', 'dateList', 'taskList', 'cellWidth', 'cellHeight', 'taskIndex']);
-
 const style = computed(() => {
     const { task, dateList, cellWidth, cellHeight, taskIndex } = props;
     const horizontalStyle = getBarOffset(task.startDate, task.endDate, dateList, 'DAY', cellWidth);
@@ -25,7 +17,9 @@ const style = computed(() => {
         top: `${(cellHeight * taskIndex) + (PADDING / 2)}px`,
         height: `${cellHeight - PADDING}px`
     }
-    const status = task.status.name ?? 'Developing';
+    console.log('task: ', task);
+
+    const status = task.detail.status ?? 'Developing';
     const statusColor: Record<string, string> = {
         'Done': 'rgb(103, 203, 72)',
         'Testing': '#f3a9e9',

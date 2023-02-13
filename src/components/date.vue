@@ -8,8 +8,12 @@
       </template>
     </div>
     <bar v-for="(task, index) in taskList"
-      v-bind="{ task, taskIndex: index, dateList, taskList, cellWidth, cellHeight }" />
-    <today />
+      v-bind="{ task, taskIndex: index, dateList, taskList, cellWidth, cellHeight }">
+      <template #bar-extend>
+        <slot v-bind="{ task }" name="bar-extend" />
+      </template>
+    </bar>
+    <today v-if="todayVisible" v-bind="{ dateList, taskList, cellWidth, cellHeight }" />
   </div>
 </template>
 
@@ -18,19 +22,23 @@
 import { computed } from 'vue';
 import Bar from './bar.vue';
 import Today from './today.vue';
-import { taskList } from '../mock';
-const props = defineProps(['dateList', 'taskList', 'cellWidth', 'cellHeight'])
-const dateCount = props.dateList.flatMap((v: any) => v.children).length;
+const props = defineProps(['dateList', 'taskList', 'cellWidth', 'cellHeight', 'dateRangeList'])
 
 const subItemStyle = computed(() => {
   return (index: number) => {
     return {
       width: props.cellWidth + 'px',
       height: props.cellHeight + 'px',
-      background: [5, 6].includes(index) ? '#f5f5f5' : ''
     }
   }
 
+})
+
+const todayVisible = computed(() => {
+  const startDate = new Date(props.dateRangeList[0]).getTime();
+  const endDate = new Date(props.dateRangeList[1]).getTime();
+  const now = new Date().getTime()
+  return now > startDate && now < endDate;
 })
 
 </script>
