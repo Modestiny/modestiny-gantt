@@ -43,9 +43,7 @@ const style = computed(() => {
     background: #f3a9e9;
     font-size: 12px;
     padding: 0 20px;
-    display: flex;
-    align-items: center;
-    flex-wrap: nowrap;
+    .flex();
 
     .task-info {
         position: absolute;

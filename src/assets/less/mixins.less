@@ -1,0 +1,34 @@
+.__flex-base__(@justify: center; @align: center; @direction: row) {
+    flex-direction: @direction;
+    justify-content: @justify;
+    align-items: @align;
+}
+
+.flex(@justify: center; @align: center; @direction: row) {
+    display: flex;
+    .__flex-base__(@justify; @align; @direction);
+}
+
+.inline-flex(@justify: center; @align: center; @direction: row) {
+    display: inline-flex;
+    .__flex-base__(@justify; @align; @direction);
+}
+
+.size(@width; @height) {
+    width: @width;
+    height: @height;
+}
+
+.square(@size) {
+    .size(@size; @size);
+}
+
+.round(@size) {
+    .square(@size);
+    border-radius: 50%;
+}
+.ellipsis {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}

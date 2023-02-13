@@ -22,7 +22,6 @@ export class Task {
     key = ''
 
     detail: any = {}
-
 }
 
 
@@ -33,5 +32,9 @@ export class TableProp {
     value = ''
 
     width = 80
+
+    visible = true
+
+    disabled = false
 }
 

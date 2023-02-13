@@ -37,12 +37,9 @@ const subItemStyle = computed(() => {
 </script>
 
 <style scoped lang="less">
-@border-color: #ebeef5;
 
 .flex {
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
+   .flex(flex-start);
 }
 
 .main-item-list {
@@ -55,20 +52,17 @@ const subItemStyle = computed(() => {
         font-size: 12px;
 
         .main-item-label {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border: 1px solid @border-color;
+            .flex();
+
+            border: 1px solid @border-color-base;
             background: white;
 
         }
 
         .sub-item-list {
             .sub-item {
-                border: 1px solid @border-color;
-                display: flex;
-                align-items: center;
-                justify-content: center;
+                border: 1px solid @border-color-base;
+                .flex(flex-start);
                 flex-shrink: 0;
                 background: white;
 

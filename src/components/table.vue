@@ -1,12 +1,11 @@
 <template>
-    <div>
-        <div class="tree-item" :style="subItemStyle" v-for="ele in taskList" @click="select(ele)">
-
-            <div v-for="item in tableHeaderList" :style="style(item.width)" class="table-item">
-                <template v-if="item.value === 'key'">
-                    <div class="status" :style="getStyle(ele)"></div>
-                </template>
-                {{ ele[item.value] }}
+    <div class="table">
+        <div class="table-item" :style="subItemStyle" v-for="ele in taskList" @click="select(ele)">
+            <div v-for="item in displayHeaderList" :style="style(item.width)" class="table-item-cell">
+                <div>
+                    {{ getText(ele, item.value) }}
+                </div>
+                
             </div>
         </div>
     </div>
@@ -14,9 +13,24 @@
 
 <script lang="ts" setup>
 import { computed } from 'vue';
-import { Task } from '../model';
+import { DateValue, TableProp, Task } from '../model';
 import { getBarOffset } from '../utils';
-const props = defineProps(['dateList', 'taskList', 'cellWidth', 'cellHeight', 'tableHeaderList']);
+
+interface IProp {
+
+    dateList: DateValue[]
+
+    cellWidth: number
+
+    cellHeight: number
+
+    taskList: Task[]
+
+    tableHeaderList: TableProp[]
+
+}
+
+const props = defineProps<IProp>();
 
 const subItemStyle = computed(() => {
     return {
@@ -34,6 +48,10 @@ const style = computed(() => {
     }
 })
 
+const getText = (task: Task, key: string) => {
+    return (task as any)?.[key] ?? '--';
+}
+
 
 const getStyle = (task: Task) => {
     const status = task.detail.status ?? 'Developing';
@@ -48,6 +66,9 @@ const getStyle = (task: Task) => {
     }
 }
 
+const displayHeaderList = computed(() => {
+    return props.tableHeaderList.filter(v => v.visible)
+})
 
 
 const select = (task: Task) => {
@@ -63,30 +84,30 @@ const select = (task: Task) => {
 </script>
 
 <style scoped lang="less">
-.tree-item {
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    font-size: 12px;
+.table-item {
+    .flex(flex-start);
+    font-size: @font-size-sm;
     cursor: pointer;
 
     &:hover {
-        background: #f4f4f4;
+        background: @background-color-base;
     }
 
     .status {
+        .square(6px);
         margin-right: 8px;
-        width: 6px;
-        height: 6px;
         border-radius: 2px;
     }
 
     .table-item {
-        display: flex;
-        align-items: center;
-        justify-content: center;
         font-size: 12px;
-        color: grey;
+        color: @color-text-regular;
+    }
+
+    .table-item-cell {
+        .flex(flex-start);
+        .ellipsis();
+        padding: 8px;
     }
 }
 </style>

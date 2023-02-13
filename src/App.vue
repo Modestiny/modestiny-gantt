@@ -2,16 +2,19 @@
 
 <template>
   <div class="modestiny-gantt">
-    <gantt v-bind="subProps">
+    <!-- <gantt v-bind="subProps">
       <template #bar-extend="{ task }">
         123123123
       </template>
-    </gantt>
+    </gantt> -->
+
+    <aa/>
   </div>
 </template>
 
 <script setup lang="ts">
 import Gantt from './components/gantt.vue';
+import aa from './layout/basic-layout-resize.vue';
 import { otherList, tableHeaderList } from './mock/index';
 import { computed } from 'vue';
 import { GanttOption } from './model/props';

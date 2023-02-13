@@ -44,27 +44,25 @@ const todayVisible = computed(() => {
 </script>
 
 <style scoped lang="less">
-@border-color: #ebeef5;
 
 .date {
   position: relative;
 }
 
 .row-item {
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
+  .flex(flex-start);
+
 
   .col-item {
-    border-left: 1px solid @border-color;
-    border-right: 1px solid @border-color;
+    border-left: 1px solid @border-color-base;
+    border-right: 1px solid @border-color-base;
     flex-shrink: 0;
 
 
   }
 
   &:hover .col-item {
-    background-color: #f5f5f5;
+    background-color: @background-color-base;
   }
 }
 </style>

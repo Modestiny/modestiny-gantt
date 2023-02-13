@@ -14,7 +14,7 @@ import { getTodayOffset } from '../utils';
 
 const props = defineProps(['task', 'dateList', 'taskList', 'cellWidth', 'cellHeight', 'taskIndex']);
 const style = computed(() => {
-    const { dateList, cellWidth,  } = props;
+    const { dateList, cellWidth, } = props;
     const horizontalStyle = getTodayOffset(dateList, 'DAY', cellWidth);
     console.log('horizontalStyle: ', horizontalStyle);
 
@@ -40,9 +40,7 @@ const style = computed(() => {
         font-size: 12px;
         padding: 2px 4px;
         border-radius: 2px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
+        .flex();
     }
 }
 </style>

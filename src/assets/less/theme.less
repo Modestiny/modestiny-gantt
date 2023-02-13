@@ -1,0 +1,108 @@
+// -------- Colors -----------
+@color-primary: #2489f2;
+@color-primary-prior: #2489f3; // 优先级最高的品牌色，切换主题不变
+@color-success: #2bb353;
+@color-error: #ed521f;
+@color-warning: #f0a128;
+@color-highlight: #ed521f;
+@color-white: #fff;
+@color-black: #000;
+
+@color-info: #c1c6cd; // 不可点击文本/图标
+@color-text-primary: #001330; // 正文/标题色
+@color-text-regular: #4c596e; // 正文辅助/图标
+@color-text-secondary: #7f8997; // 次级文本
+@color-text-placeholder: @color-info; // 代码中还有一些不应引用此变量的地方，发现问题请核对
+
+
+// -------- Border -----------
+@border-color-base: #e5e7ea; // 主色
+@border-color-light: #f2f3f4; // 次级
+@border-radius-base: 4px;
+@border-radius-sm: 2px;
+@border-radius-circle: 50%;
+
+
+// -------- Background -----------
+@background-color-base: #f7f8f8; // 主色
+@background-color-light: #f2f3f4; // 次级 TODO: 颜色待确认
+@body-background: @background-color-base; // Background color for `<body>`
+
+
+// -------- Typography -----------
+@font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', 'PingFang SC',
+    'Microsoft YaHei', 'Source Han Sans SC', 'Noto Sans CJK SC', sans-serif;
+@code-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier,
+    monospace;
+
+
+// -------- Font -----------
+@font-size-sm: 12px;
+@font-size-base: 14px;
+@font-size-lg: 16px;
+@font-size-big: 18px;
+
+@heading-main-size: ceil(@font-size-base * 2.42);
+@heading-1-size: ceil(@font-size-base * 1.71);
+@heading-2-size: ceil(@font-size-base * 1.42);
+@heading-3-size: ceil(@font-size-base * 1.28);
+@heading-4-size: ceil(@font-size-base * 1.14);
+@line-height-base: 1.5;
+
+
+// The background colors for active and hover states for things like
+// list items or table cells.
+@item-active-bg: @color-primary;
+@item-hover-bg: @background-color-base;
+
+
+// -------- LINK -----------
+@link-color: @color-primary;
+@link-hover-color: #50a1f5;
+@link-active-color: #207bda;
+@link-decoration: none;
+@link-hover-decoration: none;
+
+
+// -------- Animation -----------
+@ease-base-out: cubic-bezier(0.7, 0.3, 0.1, 1);
+@ease-base-in: cubic-bezier(0.9, 0, 0.3, 0.7);
+@ease-out: cubic-bezier(0.215, 0.61, 0.355, 1);
+@ease-in: cubic-bezier(0.55, 0.055, 0.675, 0.19);
+@ease-in-out: cubic-bezier(0.645, 0.045, 0.355, 1);
+@ease-out-back: cubic-bezier(0.12, 0.4, 0.29, 1.46);
+@ease-in-back: cubic-bezier(0.71, -0.46, 0.88, 0.6);
+@ease-in-out-back: cubic-bezier(0.71, -0.46, 0.29, 1.46);
+@ease-out-circ: cubic-bezier(0.08, 0.82, 0.17, 1);
+@ease-in-circ: cubic-bezier(0.6, 0.04, 0.98, 0.34);
+@ease-in-out-circ: cubic-bezier(0.78, 0.14, 0.15, 0.86);
+@ease-out-quint: cubic-bezier(0.23, 1, 0.32, 1);
+@ease-in-quint: cubic-bezier(0.755, 0.05, 0.855, 0.06);
+@ease-in-out-quint: cubic-bezier(0.86, 0, 0.07, 1);
+
+@animation-duration-slow: 0.3s; // Modal
+@animation-duration-base: 0.2s;
+@animation-duration-fast: 0.1s; // Tooltip
+
+
+// -------- Outline -----------
+@outline-blur-size: 0;
+@outline-width: 2px;
+@outline-color: @color-primary;
+
+
+// -------- Disabled states -----------
+@disabled-color: fade(#000, 25%);
+@disabled-bg: @background-color-base;
+@disabled-color-dark: fade(#fff, 35%);
+
+
+// -------- Shadow -----------
+@shadow-color: rgba(0, 0, 0, 0.15);
+@shadow-color-inverse: @color-white;
+@box-shadow-base: @shadow-1-down;
+@shadow-1-up: 0 -2px 8px @shadow-color;
+@shadow-1-down: 0 2px 8px @shadow-color;
+@shadow-1-left: -2px 0 8px @shadow-color;
+@shadow-1-right: 2px 0 8px @shadow-color;
+@shadow-2: 0 4px 12px @shadow-color;

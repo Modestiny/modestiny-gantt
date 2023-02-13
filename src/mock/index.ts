@@ -1038,15 +1038,19 @@ export const tableHeaderList = [
         label: '名称',
         value: 'key',
         width: 150,
+        visible: true,
+        disabled: true,
     },
     {
         label: '开始时间',
         value: 'startDate',
         width: 150,
+        visible: true
     },
     {
         label: '结束时间',
         value: 'endDate',
         width: 150,
+        visible: true
     }
 ]

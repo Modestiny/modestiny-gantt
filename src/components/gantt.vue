@@ -4,11 +4,11 @@
     <div class="modestiny-gantt">
         <basic-layout>
             <template #left-top>
-                <tree-header v-bind="subProps" />
+                <table-header v-bind="subProps" />
             </template>
 
             <template #left>
-                <tree v-bind="subProps" />
+                <table-body v-bind="subProps" />
             </template>
 
             <template #right-top>
@@ -29,11 +29,11 @@
   
 <script setup lang="ts">
 import BasicLayout from '../layout/basic-layout-two.vue';
-import Tree from './tree.vue';
-import TreeHeader from './tree-header.vue';
+import TableBody from './table.vue';
+import TableHeader from './table-header.vue';
 import Date from './date.vue';
 import DateHeader from './date-header.vue';
-import { computed } from 'vue';
+import { computed, reactive } from 'vue';
 import { getDateList, getTaskDateRange } from '../utils';
 import { TableProp, Task } from '../model';
 
@@ -66,15 +66,14 @@ const subProps = computed(() => {
         dateRangeList,
         cellHeight,
         cellWidth,
-        tableHeaderList: tableProps
+        tableHeaderList: reactive(tableProps)
     }
 })
 </script>
   
 <style scoped lang="less">
 .modestiny-gantt {
-    height: 100%;
-    width: 100%;
+    .square(100%);
     padding: 32px;
 }
 </style>
