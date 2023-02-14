@@ -169,8 +169,6 @@ const fullScreenStyle = computed(() => {
     .basic-layout__content {
         height: calc(~"100% - @{layout-header-height} - 16px");
         background: @color-white;
-        overflow-x: auto;
-        overflow-y: auto;
 
         &.no-header {
             height: 100%;

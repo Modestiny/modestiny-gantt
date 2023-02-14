@@ -7,15 +7,34 @@
 
             <div class="sub-item-list flex">
                 <div class="item sub-item" v-for="(item, index) in ele.children" :style="subItemStyle(index)"> {{
-                        item.label
+                    item.label
                 }}</div>
             </div>
         </div>
     </div>
+
+    <div class="date-header">
+        <virtual-scroll v-bind="virtualProps">
+            <template #row="{ rowIndex }">
+            </template>
+            <template #col="{ rowIndex, colIndex }">
+                <div class="col-item">
+                     <!-- {{ rowIndex == 0 ? dateList[rowIndex].label :
+                dateList[rowIndex][colIndex].label}}  -->
+
+                {{ rowIndex }} {{ colIndex }}
+            </div>
+            </template>
+        </virtual-scroll>
+    </div>
+
+
 </template>
 
 <script setup lang="ts">
 import { computed } from 'vue';
+import VirtualScroll from '../layout/virtual-scroll.vue';
+import { DateValue } from '../model';
 
 const props = defineProps(['dateList', 'cellWidth', 'cellHeight'])
 
@@ -34,11 +53,31 @@ const subItemStyle = computed(() => {
         }
     }
 })
+
+const dateFlattenList = computed(() => {
+    return props.dateList.flatMap((v: DateValue) => [v, ...(v?.children ?? [])]);
+})
+
+const virtualProps = computed(() => {
+
+    const { cellWidth, cellHeight } = props;
+    return {
+        rowCount: 2,
+        colCount: dateFlattenList.value.length,
+        cellWidth,
+        cellHeight
+    }
+})
 </script>
 
 <style scoped lang="less">
 .flex {
     .flex(flex-start);
+}
+
+.date-header {
+    width: 600px;
+    height: 80px;
 }
 
 .main-item-list {

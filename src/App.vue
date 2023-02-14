@@ -2,7 +2,7 @@
 
 <template>
   <div class="modestiny-gantt">
-    <!-- <gantt v-bind="subProps">
+    <gantt v-bind="subProps">
       <template #bar-extend="{ task }">
         <el-popover placement="top" title="asdf" width="300" trigger="hover" content="dsafdfasdf">
           <template #reference>
@@ -11,9 +11,9 @@
         </el-popover>
         {{ task.name }}
       </template>
-    </gantt> -->
+    </gantt>
 
-    <aa/>
+    <!-- <aa/> -->
   </div>
 </template>
 

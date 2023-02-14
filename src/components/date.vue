@@ -1,5 +1,16 @@
 <template>
-  <div class="date">
+
+  <virtual-scroll v-bind="virtualProps">
+    <template #row="{ rowIndex }">
+    </template>
+    <template #col="{ rowIndex, colIndex }">
+      <div class="col-item">  {{ colIndex }}</div>
+
+    </template>
+  </virtual-scroll>
+  <!-- <div class="date">
+
+       
     <div class="row-item" v-for="(ele, index) in taskList.length">
       <template v-for="item in dateList">
         <template v-for="(col, colIndex) in item.children">
@@ -7,6 +18,12 @@
         </template>
       </template>
     </div>
+
+
+
+
+
+
     <bar v-for="(task, index) in taskList"
       v-bind="{ task, taskIndex: index, dateList, taskList, cellWidth, cellHeight }">
       <template #bar-extend>
@@ -14,7 +31,7 @@
       </template>
     </bar>
     <today v-if="todayVisible" v-bind="{ dateList, taskList, cellWidth, cellHeight }" />
-  </div>
+  </div> -->
 </template>
 
 
@@ -22,6 +39,9 @@
 import { computed } from 'vue';
 import Bar from './bar.vue';
 import Today from './today.vue';
+import VirtualScroll from '../layout/virtual-scroll.vue';
+import { DateValue } from '../model';
+
 const props = defineProps(['dateList', 'taskList', 'cellWidth', 'cellHeight', 'dateRangeList'])
 
 const subItemStyle = computed(() => {
@@ -34,6 +54,10 @@ const subItemStyle = computed(() => {
 
 })
 
+const dateFlattenList = computed(() => {
+  return props.dateList.flatMap((v: DateValue) => [v, ...(v?.children ?? [])]);
+})
+
 const todayVisible = computed(() => {
   const startDate = new Date(props.dateRangeList[0]).getTime();
   const endDate = new Date(props.dateRangeList[1]).getTime();
@@ -41,14 +65,35 @@ const todayVisible = computed(() => {
   return now > startDate && now < endDate;
 })
 
+const virtualProps = computed(() => {
+
+  const { taskList, cellWidth, cellHeight } = props;
+  return {
+    rowCount: 300,
+    colCount: dateFlattenList.value.length,
+    cellWidth,
+    cellHeight
+  }
+})
+
+
 </script>
 
 <style scoped lang="less">
-
 .date {
   position: relative;
-  height:400px;
+  height: 400px;
   overflow-y: scroll;
+}
+
+.col-item {
+  border-left: 1px solid @border-color-base;
+  border-right: 1px solid @border-color-base;
+  flex-shrink: 0;
+  .square(100%);
+  .flex();
+
+
 }
 
 .row-item {

@@ -18,7 +18,7 @@
             </template>
 
             <template #rightContent>
-                <date-header v-bind="subProps" />
+                <!-- <date-header v-bind="subProps" /> -->
                 <date v-bind="subProps">
                     <template #bar-extend="{ task }">
                         <slot name="bar-extend" v-bind="{ task }" />
