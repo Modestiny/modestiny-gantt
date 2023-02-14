@@ -7,7 +7,7 @@ export const otherList: Task[] = [
         id: '10001',
         startDate: '2022-10-28',
         endDate: '2023-3-4',
-        key: 'REQ-5888 Waiting A task that needs to be done',
+        key: 'REQ-5888 速度发啊手动封口机阿里斯顿快放假啦三大军阀离开',
         detail: {
             status: 'Waiting',
             description: 'A task that needs to be done'
@@ -1037,7 +1037,7 @@ export const tableHeaderList = [
     {
         label: '名称',
         value: 'key',
-        width: 150,
+        width: 300,
         visible: true,
         disabled: true,
     },

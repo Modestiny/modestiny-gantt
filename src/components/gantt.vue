@@ -2,13 +2,14 @@
 
 <template>
     <div class="modestiny-gantt">
-        <basic-layout>
+        <basic-layout :visible-left="true">
             <template #left-top>
                 <table-header v-bind="subProps" />
             </template>
 
             <template #left>
-                <table-body v-bind="subProps" />
+                <TableEl/>
+                
             </template>
 
             <template #right-top>
@@ -16,7 +17,8 @@
 
             </template>
 
-            <template #right>
+            <template #rightContent>
+                <date-header v-bind="subProps" />
                 <date v-bind="subProps">
                     <template #bar-extend="{ task }">
                         <slot name="bar-extend" v-bind="{ task }" />
@@ -28,8 +30,10 @@
 </template>
   
 <script setup lang="ts">
-import BasicLayout from '../layout/basic-layout-two.vue';
+import BasicLayout from '../layout/basic-layout-three.vue';
 import TableBody from './table.vue';
+import TableEl from './table-el.vue';
+import DateEl from './date-el.vue';
 import TableHeader from './table-header.vue';
 import Date from './date.vue';
 import DateHeader from './date-header.vue';

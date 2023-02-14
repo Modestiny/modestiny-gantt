@@ -37,31 +37,11 @@ const style = computed(() => {
 
 <style scoped lang="less">
 .bar {
+    .flex();
     border-radius: 10px;
     z-index: 1;
     position: absolute;
-    background: #f3a9e9;
     font-size: 12px;
     padding: 0 20px;
-    .flex();
-
-    .task-info {
-        position: absolute;
-        left: 100%;
-        top: 0;
-        margin-left: 20px;
-        height: 100%;
-        line-height: 100%;
-        display: flex;
-        align-items: center;
-        flex-wrap: nowrap;
-        font-size: 12px;
-        white-space: nowrap;
-        color: white;
-        border-radius: 4px;
-        cursor: pointer;
-        padding: 0 10px;
-    }
-
 }
 </style>

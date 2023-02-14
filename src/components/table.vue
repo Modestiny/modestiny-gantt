@@ -1,11 +1,8 @@
 <template>
     <div class="table">
-        <div class="table-item" :style="subItemStyle" v-for="ele in taskList" @click="select(ele)">
+        <div class="table-item" v-for="ele in taskList" @click="select(ele)">
             <div v-for="item in displayHeaderList" :style="style(item.width)" class="table-item-cell">
-                <div>
-                    {{ getText(ele, item.value) }}
-                </div>
-                
+                {{ getText(ele, item.value) }}
             </div>
         </div>
     </div>
@@ -32,18 +29,12 @@ interface IProp {
 
 const props = defineProps<IProp>();
 
-const subItemStyle = computed(() => {
-    return {
-        height: props.cellHeight + 'px',
-    }
-})
-
 
 const style = computed(() => {
     return (value: number) => {
         return {
             width: value + 'px',
-            height: (props.cellHeight * 2) + 'px',
+            height: props.cellHeight + 'px'
         }
     }
 })
@@ -84,30 +75,30 @@ const select = (task: Task) => {
 </script>
 
 <style scoped lang="less">
-.table-item {
-    .flex(flex-start);
-    font-size: @font-size-sm;
-    cursor: pointer;
-
-    &:hover {
-        background: @background-color-base;
-    }
-
-    .status {
-        .square(6px);
-        margin-right: 8px;
-        border-radius: 2px;
-    }
+.table {
+    border: 1px solid @border-color-base;
 
     .table-item {
-        font-size: 12px;
+        .flex(flex-start, flex-start);
+        font-size: @font-size-base;
+        cursor: pointer;
         color: @color-text-regular;
-    }
 
-    .table-item-cell {
-        .flex(flex-start);
-        .ellipsis();
-        padding: 8px;
+        &:hover {
+            background: @background-color-base;
+        }
+
+        .status {
+            .square(6px);
+            margin-right: 8px;
+            border-radius: 2px;
+        }
+
+
+        .table-item-cell {
+            .ellipsis();
+            padding: 8px;
+        }
     }
 }
 </style>

@@ -45,14 +45,13 @@ useEventListener(right, 'scroll', (e) => {
 </script>
 
 <style scoped lang="less">
-@border-color: #ebeef5;
 
 .basic-layout {
     display: flex;
     height: 600px;
-    border: 2px solid @border-color;
+    border: 1px solid @border-color-base;
     overflow: hidden;
-    background: #fff;
+    background: white;
 }
 
 .basic-left {
@@ -69,13 +68,13 @@ useEventListener(right, 'scroll', (e) => {
 .basic-resize {
     width: 2px;
     height: 100%;
-    background: @border-color;
+    background: @border-color-base;
     flex-shrink: 0;
 
     &:hover {
         cursor: e-resize;
-        background: #2489f4;
-        box-shadow: #ebeef5;
+        background: @color-primary;
+        box-shadow: @shadow-1-down;
     }
 }
 

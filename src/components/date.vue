@@ -47,6 +47,8 @@ const todayVisible = computed(() => {
 
 .date {
   position: relative;
+  height:400px;
+  overflow-y: scroll;
 }
 
 .row-item {

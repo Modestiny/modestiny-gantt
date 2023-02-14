@@ -37,9 +37,8 @@ const subItemStyle = computed(() => {
 </script>
 
 <style scoped lang="less">
-
 .flex {
-   .flex(flex-start);
+    .flex(flex-start);
 }
 
 .main-item-list {

@@ -1,6 +1,7 @@
 <template>
     <div class="container" ref="container">
-        <div v-for="(section, index) in sections" :key="index" class="section" :style="{ flex: section + ' 1 0%' }">
+        <div v-for="(section, index) in sections" :key="index" class="section"
+            :style="{ width: `${section.width}px` }">
             <template v-if="index !== sections.length - 1">
                 <div class="divider" @mousedown="handleMouseDown($event, index)" />
             </template>
@@ -11,8 +12,14 @@
 <script lang="ts" setup>
 import { ref } from 'vue';
 
-const sections = ref([1, 1, 1]);
 const container = ref<HTMLElement>();
+
+const sections = ref([
+    { width: 100, max: 400, min: 80 },
+    { width: 100, max: 400, min: 80 },
+    { width: 100, max: 400, min: 80 },
+    { width: 100, max: 400, min: 80 },
+])
 
 
 const handleMouseDown = (e: MouseEvent, index: number) => {
@@ -24,11 +31,11 @@ const handleMouseDown = (e: MouseEvent, index: number) => {
 
     const handleMouseMove = (event: MouseEvent) => {
         if (!isDragging) return;
-        const distance = (event.clientX - initialX) / 838 * 3;
+        const distance = (event.clientX - initialX);
         console.log('distance: ', distance);
         const newSections = [...sections.value];
-        newSections[index] += distance;
-        newSections[index + 1] -= distance;
+        (newSections[index].width) += distance;
+        (newSections[index + 1].width) -= distance;
         sections.value = newSections;
         initialX = event.clientX;
     };
