@@ -12,8 +12,6 @@
         {{ task.name }}
       </template>
     </gantt>
-
-    <!-- <aa/> -->
   </div>
 </template>
 
@@ -27,8 +25,8 @@ import { GanttOption } from './model/props';
 const subProps = computed(() => {
   return {
     taskList: otherList,
-    cellHeight: 50,
-    cellWidth: 80,
+    cellHeight:40,
+    cellWidth: 100,
     tableProps: tableHeaderList
   } as GanttOption
 })

@@ -12,18 +12,18 @@ const props = defineProps(['task', 'dateList', 'taskList', 'cellWidth', 'cellHei
 const style = computed(() => {
     const { task, dateList, cellWidth, cellHeight, taskIndex } = props;
     const horizontalStyle = getBarOffset(task.startDate, task.endDate, dateList, 'DAY', cellWidth);
-    const PADDING = 8;
+    const RATIO = 0.6;
     const verticalStyle = {
-        top: `${(cellHeight * taskIndex) + (PADDING / 2)}px`,
-        height: `${cellHeight - PADDING}px`
+        top: `${(cellHeight * taskIndex) +( (1 - RATIO) / 2 * cellHeight )}px`,
+        height: `${cellHeight * RATIO}px`
     }
 
     const status = task.detail.status ?? 'Developing';
     const statusColor: Record<string, string> = {
-        'Done': 'rgb(103, 203, 72)',
-        'Testing': '#f3a9e9',
-        'Developing': 'rgb(0, 157, 255)',
-        'Waiting': 'rgb(189, 188, 190)',
+        'Done': 'rgb(107, 201, 80)',
+        'Testing': '#A875FF',
+        'Developing': 'rgb(65, 148, 246)',
+        'Waiting': '#d3d3d3',
     };
     const statusStyle = {
         background: statusColor?.[status]

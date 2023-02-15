@@ -4,7 +4,7 @@
             <div class="virtual-scroll-header_wrapper" :style="containerHeaderStyle">
                 <div class="table-row" v-for="(ele, rowIndex) in headerRows" :key="rowIndex">
                     <div v-for="(item, colIndex) in displayHeaderColList(rowIndex)" class="table-col"
-                        :style="cellHeaderStyle(rowIndex)" :key="colIndex">
+                        :style="cellHeaderStyle(rowIndex, colIndex)" :key="colIndex">
                         {{ item.label }}
                     </div>
                 </div>
@@ -46,7 +46,7 @@ const headerRows = computed(() => {
 
     const otherCount = new Array(dateFlattenList.value.length - props.columns.length).fill(props.columns[0]);
 
-    return [[...levelOne,...otherCount], dateFlattenList.value]
+    return [[...levelOne, ...otherCount], dateFlattenList.value]
 })
 
 
@@ -66,20 +66,30 @@ const endLeftIndex = ref(colKeep);
 useEventListener(container, 'scroll', (e: MouseEvent) => {
     requestAnimationFrame(() => {
         const scrollTop = (e.target as HTMLDivElement)?.scrollTop;
-        const topIndex = Math.floor(scrollTop / props.cellHeight);
-        startTopIndex.value = Math.min(topIndex, dateCount.value - rowKeep);;
-        endTopIndex.value = startTopIndex.value + rowKeep;
-
         const scrollLeft = (e.target as HTMLDivElement)?.scrollLeft;
-        const leftIndex = Math.floor(scrollLeft / props.cellWidth);
-        startLeftIndex.value = Math.min(leftIndex, colCount.value - colKeep);
-        endLeftIndex.value = startLeftIndex.value + colKeep;
         headerContainer.value?.scroll({
             top: scrollTop,
             left: scrollLeft,
         })
-
         props.scrollCallBack?.(scrollTop);
+
+        if (dateCount.value > rowKeep) {
+            const topIndex = Math.floor(scrollTop / props.cellHeight);
+            startTopIndex.value = Math.min(topIndex, dateCount.value - rowKeep);;
+            endTopIndex.value = startTopIndex.value + rowKeep;
+        };
+
+
+        if (colCount.value > colKeep) {
+            const leftIndex = Math.floor(scrollLeft / props.cellWidth);
+            startLeftIndex.value = Math.min(leftIndex, colCount.value - colKeep);
+            endLeftIndex.value = startLeftIndex.value + colKeep;
+        }
+
+
+
+
+
     })
 })
 
@@ -93,11 +103,12 @@ const cellStyle = computed(() => {
 })
 
 const cellHeaderStyle = computed(() => {
-    return (rowIndex: number) => {
+    return (rowIndex: number, colIndex: number) => {
         const span = headerRows.value[rowIndex][0].children.length;
         return {
             width: `${props.cellWidth * span || props.cellWidth}px`,
             height: `${props.cellHeight}px`,
+            background: rowIndex > 0 && [5, 6].includes(colIndex % 7) ? '#f3f4f4' : ''
         }
     }
 })
@@ -173,6 +184,10 @@ const displayRowList = computed(() => {
             position: relative;
         }
 
+        .table-row:hover {
+            background: @background-color-base
+        }
+
     }
 
 
@@ -180,6 +195,7 @@ const displayRowList = computed(() => {
         .flex();
         flex-shrink: 0;
         border-right: 1px solid @border-color-base;
+        user-select: none;
     }
 
     .table-row {
@@ -187,38 +203,5 @@ const displayRowList = computed(() => {
         width: 100%;
     }
 
-}
-
-.scroll-view {
-    overflow-x: auto;
-    overflow-y: auto;
-    width: 100%;
-    height: 100%;
-    will-change: transform;
-}
-
-
-
-.scroll-container {
-    position: relative;
-    transition: all 1s;
-}
-
-.stick-row {
-    .flex(flex-start);
-    position: sticky;
-    top: 0;
-    left: 0;
-    z-index: 1;
-    background: white;
-}
-
-
-.bar {
-    .size(100px, 20px);
-    position: absolute;
-    left: 400px;
-    top: 0px;
-    background-color: aqua;
 }
 </style>

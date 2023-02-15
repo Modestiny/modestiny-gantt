@@ -29,7 +29,7 @@ export class TableProp {
 
     label = ''
 
-    value = ''
+    prop = ''
 
     width = 80
 

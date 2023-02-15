@@ -62,6 +62,7 @@ export const getTodayOffset = (dateList: DateValue[], unit: DATE_UNIT, cellWidth
     if (unit === 'DAY') {
         const dateStart = dayjs();
         const dateListStart = dayjs(dateList[0]?.children?.[0].value);
+        console.log('dateListStart: ', dateListStart);
         const dayStartCount = dateStart.diff(dateListStart, "day");
         return {
             left: `${dayStartCount * cellWidth}px`,

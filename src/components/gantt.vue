@@ -3,37 +3,26 @@
 <template>
     <div class="modestiny-gantt">
         <basic-layout :visible-left="true">
-            <template #left-top>
-                <table-header v-bind="subProps" />
-            </template>
-
             <template #left>
-                <TableBody v-bind="subProps" />
-                
-            </template>
-
-            <template #right-top>
-                <date-header v-bind="subProps" />
-
+                <table-section v-if="load" v-bind="subProps" @do-layout="doLayout"/>
             </template>
 
             <template #rightContent>
-                <!-- <date-header v-bind="subProps" /> -->
-                <date v-bind="subProps">
+                <date-section v-if="load" v-bind="subProps">
                     <template #bar-extend="{ task }">
                         <slot name="bar-extend" v-bind="{ task }" />
                     </template>
-                </date>
+                </date-section>
             </template>
         </basic-layout>
     </div>
 </template>
-  
+
 <script setup lang="ts">
-import BasicLayout from '../layout/basic-layout-three.vue';
-import TableBody from './table.vue';
-import Date from './date.vue';
-import { computed, reactive } from 'vue';
+import BasicLayout from '../layout/basic-layout.vue';
+import TableSection from './table.vue';
+import DateSection from './date.vue';
+import { computed, nextTick, reactive, ref } from 'vue';
 import { getDateList, getTaskDateRange } from '../utils';
 import { TableProp, Task } from '../model';
 
@@ -69,12 +58,19 @@ const subProps = computed(() => {
         tableHeaderList: reactive(tableProps)
     }
 })
+
+const load = ref(true);
+
+const doLayout = async () => {
+    load.value = false;
+    await nextTick();
+    load.value = true;
+}
 </script>
-  
+
 <style scoped lang="less">
 .modestiny-gantt {
     .square(100%);
     padding: 32px;
 }
 </style>
-  

@@ -6,14 +6,16 @@
                     :key="colIndex">
                     {{ item.label }}
                 </div>
+                <slot name="table-header" />
             </div>
         </div>
 
         <div class="virtual-table-body" ref="container">
             <div class="virtual-table-body_wrapper" :style="containerStyle">
-                <div class="table-row" v-for="(ele, rowIndex) in displayRowList" :key="rowIndex" @click="$emit('row-click',ele)">
+                <div class="table-row" v-for="(ele, rowIndex) in displayRowList" :key="rowIndex"
+                    @click="$emit('row-click', ele)">
                     <div v-for="(item, colIndex) in columns" class="table-cell" :style="cellStyle(item)"
-                        :key="colIndex" >
+                        :key="colIndex">
                         {{ ele[item.prop] }}
                     </div>
                 </div>
@@ -43,22 +45,26 @@ const dateCount = computed(() => {
 useEventListener(container, 'scroll', (e: MouseEvent) => {
     requestAnimationFrame(() => {
         const scrollTop = (e.target as HTMLDivElement)?.scrollTop;
-        const topIndex = Math.floor(scrollTop / props.rowHeight);
-        startTopIndex.value = Math.min(topIndex, dateCount.value - rowKeep);;
-        endTopIndex.value = startTopIndex.value + rowKeep;
         const scrollLeft = (e.target as HTMLDivElement)?.scrollLeft;
         headerContainer.value?.scroll({
             left: scrollLeft,
         })
+
+        if (dateCount.value < rowKeep) return;
+
+        const topIndex = Math.floor(scrollTop / props.rowHeight);
+        startTopIndex.value = Math.min(topIndex, dateCount.value - rowKeep);;
+        endTopIndex.value = startTopIndex.value + rowKeep;
+
     })
 })
 
 const cellStyle = computed(() => {
     return (item: any) => {
         return {
-            width: item.width ? `${item.width}px` : `100%`,
+            // width: item.width ? `${item.width}px` : `100%`,
+            width: `100%`,
             height: `${props.rowHeight}px`,
-            flexShrink: item.width ? 0 : 'auto',
         }
     }
 })
@@ -66,9 +72,9 @@ const cellStyle = computed(() => {
 const cellHeaderStyle = computed(() => {
     return (item: any) => {
         return {
-            width: item.width ? `${item.width}px` : `100%`,
+            // width: item.width ? `${item.width}px` : `100%`,
+            width: `100%`,
             height: `${props.headerHeight ?? 40}px`,
-            flexShrink: item.width ? 0 : 'auto',
         }
     }
 })
@@ -92,7 +98,7 @@ const displayRowList = computed(() => {
 .virtual-scroll-vertical-table {
     .square(100%);
     .flex(flex-start, flex-start, column);
-    padding: 0 10px;
+    padding: 0 10px 8px 10px;
 
     .table-cell {
         .flex(flex-start);
@@ -109,16 +115,26 @@ const displayRowList = computed(() => {
             font-weight: 700;
             color: @color-text-regular;
         }
+
+        .table-row {
+            border-bottom: 1px solid @border-color-base;
+            padding-bottom: 1px;
+        }
     }
 
     .virtual-table-body {
         width: 100%;
         height: 100%;
         overflow: hidden;
+        padding-bottom: 8px;
 
         .table-cell {
             font-size: 14px;
             color: @color-text-primary;
+        }
+
+        .table-row:hover {
+            background: @background-color-base
         }
     }
 
@@ -126,7 +142,6 @@ const displayRowList = computed(() => {
         .flex(flex-start);
         position: relative;
         width: 100%;
-        border-bottom: 1px solid @border-color-base;
     }
 }
 </style>

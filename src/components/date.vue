@@ -1,5 +1,4 @@
 <template>
-
   <virtual-scroll-table v-bind="virtualProps">
     <template #table-extend>
       <bar v-for="(task, index) in taskList"
@@ -8,7 +7,6 @@
              <slot v-bind="{ task }" name="bar-extend" />
         </template> 
       </bar>
-
       <today v-if="todayVisible" v-bind="{ dateList, taskList, cellWidth, cellHeight }" />
     </template>
   </virtual-scroll-table>
@@ -20,24 +18,8 @@ import { computed } from 'vue';
 import Bar from './bar.vue';
 import Today from './today.vue';
 import VirtualScrollTable from '../basic/virtual-scroll-table.vue';
-import { DateValue } from '../model';
-import { dateList } from '../mock';
 
 const props = defineProps(['dateList', 'taskList', 'cellWidth', 'cellHeight', 'dateRangeList'])
-
-const subItemStyle = computed(() => {
-  return (index: number) => {
-    return {
-      width: props.cellWidth + 'px',
-      height: props.cellHeight + 'px',
-    }
-  }
-
-})
-
-const dateFlattenList = computed(() => {
-  return props.dateList.flatMap((v: DateValue) => [v, ...(v?.children ?? [])]);
-})
 
 const todayVisible = computed(() => {
   const startDate = new Date(props.dateRangeList[0]).getTime();
@@ -68,36 +50,5 @@ const virtualProps = computed(() => {
 </script>
 
 <style scoped lang="less">
-.date {
-  position: relative;
-  height: 400px;
-  overflow-y: scroll;
-}
 
-.col-item {
-  border-left: 1px solid @border-color-base;
-  border-right: 1px solid @border-color-base;
-  flex-shrink: 0;
-  .square(100%);
-  .flex();
-
-
-}
-
-.row-item {
-  .flex(flex-start);
-
-
-  .col-item {
-    border-left: 1px solid @border-color-base;
-    border-right: 1px solid @border-color-base;
-    flex-shrink: 0;
-
-
-  }
-
-  &:hover .col-item {
-    background-color: @background-color-base;
-  }
-}
 </style>
