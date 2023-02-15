@@ -17,7 +17,6 @@ const style = computed(() => {
         top: `${(cellHeight * taskIndex) + (PADDING / 2)}px`,
         height: `${cellHeight - PADDING}px`
     }
-    console.log('task: ', task);
 
     const status = task.detail.status ?? 'Developing';
     const statusColor: Record<string, string> = {

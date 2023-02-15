@@ -1,37 +1,17 @@
 <template>
 
-  <virtual-scroll v-bind="virtualProps">
-    <template #row="{ rowIndex }">
+  <virtual-scroll-table v-bind="virtualProps">
+    <template #table-extend>
+      <bar v-for="(task, index) in taskList"
+        v-bind="{ task, taskIndex: index, dateList, taskList, cellWidth, cellHeight }">
+        <template #bar-extend>
+             <slot v-bind="{ task }" name="bar-extend" />
+        </template> 
+      </bar>
+
+      <today v-if="todayVisible" v-bind="{ dateList, taskList, cellWidth, cellHeight }" />
     </template>
-    <template #col="{ rowIndex, colIndex }">
-      <div class="col-item">  {{ colIndex }}</div>
-
-    </template>
-  </virtual-scroll>
-  <!-- <div class="date">
-
-       
-    <div class="row-item" v-for="(ele, index) in taskList.length">
-      <template v-for="item in dateList">
-        <template v-for="(col, colIndex) in item.children">
-          <div :class="['col-item', { 'is-odd': index % 2 == 1 }]" :style="subItemStyle(colIndex)"></div>
-        </template>
-      </template>
-    </div>
-
-
-
-
-
-
-    <bar v-for="(task, index) in taskList"
-      v-bind="{ task, taskIndex: index, dateList, taskList, cellWidth, cellHeight }">
-      <template #bar-extend>
-        <slot v-bind="{ task }" name="bar-extend" />
-      </template>
-    </bar>
-    <today v-if="todayVisible" v-bind="{ dateList, taskList, cellWidth, cellHeight }" />
-  </div> -->
+  </virtual-scroll-table>
 </template>
 
 
@@ -39,8 +19,9 @@
 import { computed } from 'vue';
 import Bar from './bar.vue';
 import Today from './today.vue';
-import VirtualScroll from '../layout/virtual-scroll.vue';
+import VirtualScrollTable from '../basic/virtual-scroll-table.vue';
 import { DateValue } from '../model';
+import { dateList } from '../mock';
 
 const props = defineProps(['dateList', 'taskList', 'cellWidth', 'cellHeight', 'dateRangeList'])
 
@@ -67,12 +48,19 @@ const todayVisible = computed(() => {
 
 const virtualProps = computed(() => {
 
-  const { taskList, cellWidth, cellHeight } = props;
+  const { taskList, cellWidth, cellHeight, dateList } = props;
+
   return {
-    rowCount: 300,
-    colCount: dateFlattenList.value.length,
+    data: taskList,
+    columns: dateList,
     cellWidth,
-    cellHeight
+    cellHeight,
+    scrollCallBack(scrollTop: number) {
+      const dom = document.querySelectorAll('.virtual-scroll-vertical-table .virtual-table-body')[0]
+      dom?.scroll({
+        top: scrollTop
+      })
+    }
   }
 })
 

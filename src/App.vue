@@ -19,7 +19,6 @@
 
 <script setup lang="ts">
 import Gantt from './components/gantt.vue';
-import aa from './layout/virtual-scroll.vue';
 import { otherList, tableHeaderList } from './mock/index';
 import { computed } from 'vue';
 import { GanttOption } from './model/props';
@@ -28,7 +27,7 @@ import { GanttOption } from './model/props';
 const subProps = computed(() => {
   return {
     taskList: otherList,
-    cellHeight: 40,
+    cellHeight: 50,
     cellWidth: 80,
     tableProps: tableHeaderList
   } as GanttOption

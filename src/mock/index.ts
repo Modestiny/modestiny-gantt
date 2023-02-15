@@ -4,19 +4,9 @@ import { Task } from "../model"
 
 export const otherList: Task[] = [
     {
-        id: '10001',
-        startDate: '2022-10-28',
-        endDate: '2023-3-4',
-        key: 'REQ-5888 速度发啊手动封口机阿里斯顿快放假啦三大军阀离开',
-        detail: {
-            status: 'Waiting',
-            description: 'A task that needs to be done'
-        }
-    },
-    {
         id: '10002',
-        startDate: '2021-11-28',
-        endDate: '2021-12-06',
+        startDate: '2022-2-28',
+        endDate: '2023-2-23',
         key: 'REQ-9438',
         detail: {
             status: 'Developing',

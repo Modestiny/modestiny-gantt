@@ -8,7 +8,7 @@
             </template>
 
             <template #left>
-                <TableEl/>
+                <TableBody v-bind="subProps" />
                 
             </template>
 
@@ -32,11 +32,7 @@
 <script setup lang="ts">
 import BasicLayout from '../layout/basic-layout-three.vue';
 import TableBody from './table.vue';
-import TableEl from './table-el.vue';
-import DateEl from './date-el.vue';
-import TableHeader from './table-header.vue';
 import Date from './date.vue';
-import DateHeader from './date-header.vue';
 import { computed, reactive } from 'vue';
 import { getDateList, getTaskDateRange } from '../utils';
 import { TableProp, Task } from '../model';

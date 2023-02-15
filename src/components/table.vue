@@ -1,17 +1,14 @@
 <template>
-    <div class="table">
-        <div class="table-item" v-for="ele in taskList" @click="select(ele)">
-            <div v-for="item in displayHeaderList" :style="style(item.width)" class="table-item-cell">
-                {{ getText(ele, item.value) }}
-            </div>
-        </div>
-    </div>
+    <virtual-scroll-vertical-table v-bind="virtualProps" @row-click="select">
+  
+    </virtual-scroll-vertical-table>
 </template>
 
 <script lang="ts" setup>
 import { computed } from 'vue';
 import { DateValue, TableProp, Task } from '../model';
 import { getBarOffset } from '../utils';
+import VirtualScrollVerticalTable from '../basic/virtual-scroll-vertical-table.vue'
 
 interface IProp {
 
@@ -63,15 +60,44 @@ const displayHeaderList = computed(() => {
 
 
 const select = (task: Task) => {
+    console.log('task: ', task);
     const { dateList, cellWidth } = props;
     const horizontalStyle = getBarOffset(task.startDate, task.endDate, dateList, 'DAY', cellWidth);
     const left = parseInt(horizontalStyle!.left) || 0;
-    const dom = document.querySelector('.basic-right');
+    console.log('left: ', left);
+    const dom = document.querySelector('.virtual-scroll-table .virtual-table-body');
+    console.log('dom: ', dom);
     dom?.scroll({
         left,
         behavior: 'smooth'
     })
 }
+
+
+const virtualProps = computed(() => {
+    const { taskList, cellHeight } = props;
+    const columns = [
+        {
+            label: '名称',
+            prop: 'key',
+            width: 280,
+        },
+        {
+            label: '开始时间',
+            prop: 'startDate',
+        },
+        {
+            label: '结束时间',
+            prop: 'endDate',
+        }
+    ]
+    return {
+        data: taskList,
+        rowHeight: cellHeight,
+        headerHeight: cellHeight * 2,
+        columns
+    }
+})
 </script>
 
 <style scoped lang="less">
