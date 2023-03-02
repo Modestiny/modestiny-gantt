@@ -184,6 +184,267 @@ export const otherList: Task[] = [
             description: 'A task that needs to be done'
         }
     },
+    {
+        id: '10005',
+        startDate: '2023-3-28',
+        endDate: '2023-4-06',
+        key: 'REQ-94398',
+        detail: {
+            status: 'Developing',
+            description: 'A task that needs to be done'
+        }
+    },
+    {
+        id: '10005',
+        startDate: '2023-3-28',
+        endDate: '2023-4-06',
+        key: 'REQ-94398',
+        detail: {
+            status: 'Developing',
+            description: 'A task that needs to be done'
+        }
+    },
+    {
+        id: '10005',
+        startDate: '2023-3-28',
+        endDate: '2023-4-06',
+        key: 'REQ-94398',
+        detail: {
+            status: 'Developing',
+            description: 'A task that needs to be done'
+        }
+    },
+    {
+        id: '10005',
+        startDate: '2023-3-28',
+        endDate: '2023-4-06',
+        key: 'REQ-94398',
+        detail: {
+            status: 'Developing',
+            description: 'A task that needs to be done'
+        }
+    },
+    {
+        id: '10005',
+        startDate: '2023-3-28',
+        endDate: '2023-4-06',
+        key: 'REQ-94398',
+        detail: {
+            status: 'Developing',
+            description: 'A task that needs to be done'
+        }
+    },
+    {
+        id: '10005',
+        startDate: '2023-3-28',
+        endDate: '2023-4-06',
+        key: 'REQ-94398',
+        detail: {
+            status: 'Developing',
+            description: 'A task that needs to be done'
+        }
+    },
+    {
+        id: '10005',
+        startDate: '2023-3-28',
+        endDate: '2023-4-06',
+        key: 'REQ-94398',
+        detail: {
+            status: 'Developing',
+            description: 'A task that needs to be done'
+        }
+    },
+    {
+        id: '10005',
+        startDate: '2023-3-28',
+        endDate: '2023-4-06',
+        key: 'REQ-94398',
+        detail: {
+            status: 'Developing',
+            description: 'A task that needs to be done'
+        }
+    },
+    {
+        id: '10005',
+        startDate: '2023-3-28',
+        endDate: '2023-4-06',
+        key: 'REQ-94398',
+        detail: {
+            status: 'Developing',
+            description: 'A task that needs to be done'
+        }
+    },
+    {
+        id: '10005',
+        startDate: '2023-3-28',
+        endDate: '2023-4-06',
+        key: 'REQ-94398',
+        detail: {
+            status: 'Developing',
+            description: 'A task that needs to be done'
+        }
+    },
+    {
+        id: '10005',
+        startDate: '2023-3-28',
+        endDate: '2023-4-06',
+        key: 'REQ-94398',
+        detail: {
+            status: 'Developing',
+            description: 'A task that needs to be done'
+        }
+    },
+    {
+        id: '10005',
+        startDate: '2023-3-28',
+        endDate: '2023-4-06',
+        key: 'REQ-94398',
+        detail: {
+            status: 'Developing',
+            description: 'A task that needs to be done'
+        }
+    },
+    {
+        id: '10005',
+        startDate: '2023-3-28',
+        endDate: '2023-4-06',
+        key: 'REQ-94398',
+        detail: {
+            status: 'Developing',
+            description: 'A task that needs to be done'
+        }
+    },
+    {
+        id: '10005',
+        startDate: '2023-3-28',
+        endDate: '2023-4-06',
+        key: 'REQ-94398',
+        detail: {
+            status: 'Developing',
+            description: 'A task that needs to be done'
+        }
+    },
+    {
+        id: '10005',
+        startDate: '2023-3-28',
+        endDate: '2023-4-06',
+        key: 'REQ-94398',
+        detail: {
+            status: 'Developing',
+            description: 'A task that needs to be done'
+        }
+    },
+    {
+        id: '10005',
+        startDate: '2023-3-28',
+        endDate: '2023-4-06',
+        key: 'REQ-94398',
+        detail: {
+            status: 'Developing',
+            description: 'A task that needs to be done'
+        }
+    },
+    {
+        id: '10005',
+        startDate: '2023-3-28',
+        endDate: '2023-4-06',
+        key: 'REQ-94398',
+        detail: {
+            status: 'Developing',
+            description: 'A task that needs to be done'
+        }
+    },
+    {
+        id: '10005',
+        startDate: '2023-3-28',
+        endDate: '2023-4-06',
+        key: 'REQ-94398',
+        detail: {
+            status: 'Developing',
+            description: 'A task that needs to be done'
+        }
+    },
+    {
+        id: '10005',
+        startDate: '2023-3-28',
+        endDate: '2023-4-06',
+        key: 'REQ-94398',
+        detail: {
+            status: 'Developing',
+            description: 'A task that needs to be done'
+        }
+    },
+    {
+        id: '10005',
+        startDate: '2023-3-28',
+        endDate: '2023-4-06',
+        key: 'REQ-94398',
+        detail: {
+            status: 'Developing',
+            description: 'A task that needs to be done'
+        }
+    },
+    {
+        id: '10005',
+        startDate: '2023-3-28',
+        endDate: '2023-4-06',
+        key: 'REQ-94398',
+        detail: {
+            status: 'Developing',
+            description: 'A task that needs to be done'
+        }
+    },
+    {
+        id: '10005',
+        startDate: '2023-3-28',
+        endDate: '2023-4-06',
+        key: 'REQ-94398',
+        detail: {
+            status: 'Developing',
+            description: 'A task that needs to be done'
+        }
+    },
+    {
+        id: '10005',
+        startDate: '2023-3-28',
+        endDate: '2023-4-06',
+        key: 'REQ-94398',
+        detail: {
+            status: 'Developing',
+            description: 'A task that needs to be done'
+        }
+    },
+    {
+        id: '10005',
+        startDate: '2023-3-28',
+        endDate: '2023-4-06',
+        key: 'REQ-94398',
+        detail: {
+            status: 'Developing',
+            description: 'A task that needs to be done'
+        }
+    },
+    {
+        id: '10005',
+        startDate: '2023-3-28',
+        endDate: '2023-4-06',
+        key: 'REQ-94398',
+        detail: {
+            status: 'Developing',
+            description: 'A task that needs to be done'
+        }
+    },
+    {
+        id: '10005',
+        startDate: '2023-3-28',
+        endDate: '2023-4-06',
+        key: 'REQ-94398',
+        detail: {
+            status: 'Developing',
+            description: 'A task that needs to be done'
+        }
+    },
+    
     
     
 

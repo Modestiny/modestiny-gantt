@@ -5,7 +5,7 @@
                 <div class="table-row" v-for="(ele, rowIndex) in headerRows" :key="rowIndex"
                     :style="containerHeaderStyle(rowIndex)">
                     <div v-for="(item, colIndex) in displayHeaderColList(rowIndex)" class="table-col"
-                        :style="cellHeaderStyle(rowIndex, colIndex,item)" :key="colIndex">
+                        :style="cellHeaderStyle(rowIndex, colIndex, item)" :key="colIndex">
                         {{ item.label }}
                     </div>
                 </div>
@@ -18,7 +18,7 @@
                         :key="colIndex">
                     </div>
                 </div>
-                <slot name="table-extend" />
+                <slot name="table-extend" v-bind="{ displayRowList }"/>
             </div>
         </div>
     </div>
@@ -105,9 +105,9 @@ const cellStyle = computed(() => {
 })
 
 const cellHeaderStyle = computed(() => {
-    return (rowIndex: number, colIndex: number,item:any) => {
+    return (rowIndex: number, colIndex: number, item: any) => {
         const span = headerRows.value[rowIndex][0].children.length;
-        const isWeekend  = [0,6].includes(dayjs(item.value).get('day'));
+        const isWeekend = [0, 6].includes(dayjs(item.value).get('day'));
         return {
             width: `${props.cellWidth * span || props.cellWidth}px`,
             height: `${props.cellHeight}px`,
@@ -211,6 +211,11 @@ const getListStyle = (scrollDistance: number, itemWidth: number, dataCount: numb
         overflow: auto;
 
         .virtual-table-body_wrapper {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .table-row {
             position: relative;
         }
 

@@ -1,11 +1,11 @@
 <template>
   <virtual-scroll-table v-bind="virtualProps">
-    <template #table-extend>
-      <bar v-for="(task, index) in taskList"
+    <template #table-extend="{ displayRowList }">
+      <bar v-for="(task, index) in displayRowList"
         v-bind="{ task, taskIndex: index, dateList, taskList, cellWidth, cellHeight }">
         <template #bar-extend>
-             <slot v-bind="{ task }" name="bar-extend" />
-        </template> 
+          <slot v-bind="{ task }" name="bar-extend" />
+        </template>
       </bar>
       <today v-if="todayVisible" v-bind="{ dateList, taskList, cellWidth, cellHeight }" />
     </template>
@@ -49,6 +49,4 @@ const virtualProps = computed(() => {
 
 </script>
 
-<style scoped lang="less">
-
-</style>
+<style scoped lang="less"></style>
