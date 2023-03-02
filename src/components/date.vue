@@ -1,7 +1,7 @@
 <template>
   <virtual-scroll-table v-bind="virtualProps">
     <template #table-extend="{ displayRowList }">
-      <bar v-for="(task, index) in displayRowList"
+      <bar v-for="(task, index) in task"
         v-bind="{ task, taskIndex: index, dateList, taskList, cellWidth, cellHeight }">
         <template #bar-extend>
           <slot v-bind="{ task }" name="bar-extend" />
